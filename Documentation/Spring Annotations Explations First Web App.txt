@@ -1,0 +1,68 @@
+@SpringBootApplication: is a core annotation in the Spring Boot framework.
+                         It is used to indicate that the class it annotates is the main entry point for a Spring Boot application. 
+
+
+
+
+@SpringBootApplication=@Configuration+@EnableAutoConfiguration+@ComponentScan
+
+Why Use It?
+
+Simplifies Spring configuration by combining commonly used annotations.
+Automatically sets up many defaults based on the dependencies in your project, reducing boilerplate code.
+Allows you to start a Spring Boot application quickly with minimal configuration.
+
+
+package com.spring.main;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class FirstSpringWebApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(FirstSpringWebApplication.class, args);
+		
+		System.out.println("Hello Spring Boot Started");
+	}
+
+}
+
+
+
+@Controller: Marks this class as a Spring MVC controller that handles web requests.
+@GetMapping: Maps HTTP GET requests to specific methods.@GetMapping("/"): Maps HTTP GET requests with the root URL path (/) to this method.
+@ResponseBody: Indicates that the return value of a method is the HTTP response body, rather than a view name.
+
+package com.spring.main.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class MyController {
+	
+	@GetMapping("/")
+	@ResponseBody
+	public String printBoot() {
+		
+		return "Spring Boot Web App";
+	}
+	
+	@GetMapping("/py")
+	@ResponseBody
+	public String printPython() {
+		
+		return "Django Web App";
+	}
+
+}
+
+
+How It Works in a Spring Boot Application
+When the application is running, Spring Boot automatically configures a web server (like Tomcat).
+The @Controller annotation makes this class capable of handling web requests.
+Spring routes incoming GET requests to the methods based on the paths defined in @GetMapping.
+The @ResponseBody ensures the methods' return values are sent directly as the HTTP response.
