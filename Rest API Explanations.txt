@@ -1,0 +1,252 @@
+What is Spring Boot?
+Spring Boot is an open-source Java-based framework used to create stand-alone, production-grade
+ Spring applications with minimal configuration. It simplifies the development process by providing 
+default configurations, embedded servers, and pre-built functionality for common tasks.
+
+Features:
+
+i)Auto-Configuration:
+
+Automatically configures the application based on the dependencies in the classpath.
+Reduces the need for extensive manual configuration.
+
+ii)Embedded Servers:
+
+Provides embedded servers like Tomcat, Jetty, or Undertow.
+Eliminates the need to deploy WAR files; applications can be run directly as JARs.
+
+iii)Standalone Applications:
+
+Simplifies deployment with self-contained JARs that include all necessary dependencies.
+
+iv)Opinionated Defaults:
+
+Offers sensible default configurations to get started quickly, which can be overridden as needed.
+V)Spring Initializr:
+
+A web-based tool to bootstrap a Spring Boot project with dependencies and configurations.
+
+
+
+What is REST API ?
+
+RESTful API acts as an interface between two applications to exchange information securely over the internet.
+
+Most business applications have to communicate with other internal and third-party applications to perform various tasks.
+
+
+
+
+To create RESTful Web Services in Spring Boot we have to add 3 dependencies:
+
+1.Spring Web: Enables building RESTful web services.
+Spring MVC framework: Enables development of REST APIs and web applications with ease.
+
+Spring Web abstracts the complexity of handling HTTP requests and responses by providing:
+
+Annotations like @RestController, @RequestMapping, and @GetMapping to define endpoints.
+
+Embedded server: You can run your application without needing an external web server (e.g., Tomcat is included by default).
+2.MySQL Driver: Provides connectivity to MySQL databases or PostgreSQL driver to provide connectivity database
+
+3.Spring Data JPA: Simplifies database access using JPA.
+
+Annotations :
+---------------
+@SpringBootApplication: is a core annotation in the Spring Boot framework.
+                         It is used to indicate that the class it annotates is the main entry point for a Spring Boot application. 
+
+
+
+
+@SpringBootApplication=@Configuration+@EnableAutoConfiguration+@ComponentScan
+
+@Configuration: Indicates that a class declares one or more @Bean methods, which are processed by the Spring container.
+
+@Configuration annotation indicates that a class declares one or more @Bean methods and may be processed by
+ the Spring container to generate bean definitions and service requests for those beans at runtime.
+
+Since spring 2, we were writing our bean configurations to xml files. But Spring 3 gave the freedom to move bean 
+definitions out of xml files. We can give bean definitions in Java files itself. This is called Spring Java Config feature (using @Configuration annotation).
+
+@EnableAutoConfiguration > > - The @EnableAutoConfiguration annotation tells Spring Boot to "guess" how you want to configure Spring,
+ based on the jar dependencies that you have added. > - The @EnableAutoConfiguration annotation auto-configures the beans that are
+ present in the classpath. This simplifies the developer's work by guessing the required beans from the classpath and configuring them to run the application.
+
+
+@ComponentScan > > - @ComponentScan tells Spring to look for other components, configurations, and services in the specified package.
+ Spring is able to auto scan, detect and register your beans or components from the pre-defined project package.
+ If no package is specified, the current class package is taken as the root package.
+
+
+The @Component annotation in Spring is a core part of the Spring Framework.
+ It marks a Java class as a "Spring-managed component," allowing
+  it to be automatically detected and registered in the Spring application
+   context during component scanning.
+
+Why Use It?
+
+Simplifies Spring configuration by combining commonly used annotations.
+Automatically sets up many defaults based on the dependencies in your project, reducing boilerplate code.
+Allows you to start a Spring Boot application quickly with minimal configuration.
+
+ @RestController :annotation is used to create RESTful web services. It combines @Controller and @ResponseBody,
+                  meaning the controller methods return data (like JSON or XML) 
+                 directly instead of rendering a view, making it suitable for APIs.
+
+
+
+ @RestController=@Controller+@ResponseBody
+
+@ResponseBody: Indicates that the return value of a method is the HTTP response body, rather than a view name.
+@Controller: Marks this class as a Spring MVC controller that handles web requests.
+
+
+
+@Entity: Marks a class as a JPA entity, mapping it to a database table, allowing ORM (Object-Relational Mapping) for easy database operations.
+1️⃣ @Entity 📦
+✅ Purpose:
+🔹Marks a Java class as an entity that will be mapped to a database table.
+🔹It makes the class eligible for persistence operations (CRUD).
+✅ Key Features:
+🔹Every class annotated with @Entity represents a table in the database.
+🔹It must have a corresponding @Id field to uniquely identify records.
+
+
+@Table: Specifies the database table's name for the entity, enabling customization of the table name if it differs from the class name.
+
+2️⃣ @Table 🏢
+✅ Purpose:
+🔹Specifies the name of the table in the database that the entity will be mapped to.
+🔹Provides additional metadata for the table, such as its schema.
+✅ Key Features:
+🔹If not specified, the table name defaults to the class name.
+🔹You can specify the table name and schema explicitly.
+
+
+
+@Id: Defines the primary key for the entity, uniquely identifying each record in the corresponding database table.
+3️⃣ @Id 🔑
+✅ Purpose:
+🔹Marks the primary key field of the entity.
+🔹Each entity must have one @Id field, which uniquely identifies records in the table.
+✅ Key Features:
+🔹Can be used with @GeneratedValue for auto-incrementing primary keys.
+🔹Primary key declaration for entities in JPA.
+
+
+@GeneratedValue(strategy = GenerationType.IDENTITY): Instructs JPA to auto-generate the primary key using the database's identity column, ensuring unique values.
+
+@GeneratedValue 🎯
+✅ Purpose:
+🔹Specifies how the primary key is generated.
+🔹Common strategies include AUTO, IDENTITY, and SEQUENCE.
+✅ Key Features:
+🔹Helps in automatically generating unique IDs for entities.
+🔹Can be used with @Id to define how IDs should be assigned.
+
+
+@Column: Maps the entity field to a specific column in the database, allowing configuration of column properties like name, nullable, and length.
+
+5️⃣ @Column 🏷️
+✅ Purpose:
+🔹Defines the mapping between a Java field and a database column.
+🔹Allows fine-grained control over column attributes like name, length, and nullable.
+✅ Key Features:
+🔹Can specify custom column names and constraints (e.g., length, nullable).
+
+
+
+ @Data (From Lombok Library)
+Purpose: A shortcut annotation from Lombok that combines several annotations:
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@RequiredArgsConstructor
+Use Case: Simplifies the creation of POJOs by reducing boilerplate code for getters, setters, etc.
+
+ @RequestBody :annotation is used in RESTful APIs to bind the HTTP request body (usually in JSON or XML format) directly to a method's parameter, 
+                  converting it into a Java object.
+
+
+@PathVariable :annotation is used to extract values from URI
+templates in request URLs, allowing dynamic data retrieval
+from the URL for handling requests.
+
+
+@Autowired in Spring Framework
+
+@Autowired is a Spring annotation used for dependency injection, which allows Spring to automatically
+ resolve and inject dependencies into a class. It is part of the Spring Core framework and is 
+typically used on fields, constructors, or setter methods.
+
+How @Autowired Works
+The Spring container identifies the dependency by type and injects it automatically.
+It reduces the need for explicit configuration in XML or Java.
+Works with Spring's IoC container to manage bean lifecycle and dependencies.
+
+
+@DeleteMapping
+Purpose: Maps HTTP DELETE requests to a specific handler method.
+Use Case: Delete a resource.
+
+ @PutMapping
+Purpose: Maps HTTP PUT requests to a specific handler method.
+Use Case: Update an existing resource.
+
+ @GetMapping
+Purpose: Maps HTTP GET requests to a specific handler method in a controller.
+Use Case: Retrieve data or serve static content.
+
+@Repository
+Purpose: Marks a class as a Data Access Object (DAO) that interacts with the database.
+Use Case: Encapsulates the logic required to interact with a database.
+
+
+ @Service
+Purpose: Marks a class as a service layer component in the application.
+Use Case: Contains business logic and interacts with the @Repository or DAO layer.
+
+
+ResponseEntity in Spring API represents the entire HTTP response, including status code,
+ headers, and body. It allows for greater control over the response sent to the client, enhancing API flexibility.
+
+
+
+Method	Meaning	         Endpoint	Function
+GET	Read Data	/user	        Get all users details
+GET	Read Data	/user/{id}	Get user details according to id
+POST	Insert Data	/user	        Insert user details
+PUT	Update Data	/user/{id}	Update user according to id
+DELETE	Delete Data	/user/{id}	Delete user according to user id
+
+
+
+
+
+
+
+
+@RestController
+public class ProductRestController {
+	
+	@PostMapping("/product")
+	public String saveProduct(@RequestBody Product p) {
+		
+		//logic to persist
+		System.out.println(p);
+		
+		return "Product Saved";
+		
+	}
+	
+	@GetMapping("/product/{pid}")
+	public Product getProduct(@PathVariable Integer pid) {
+		Product p=null;
+		if(pid==100) {
+			 p=new Product(100,"Mouse",500.0);
+		} else if(pid==101) {
+			 p=new Product(101,"HDD",600.0);
+	
+
